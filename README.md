@@ -102,13 +102,13 @@ Para levantar el entorno localmente, la siguiente estructura de archivos es nece
 
 ### Endpoints de la API
 
-| Método | URL                                    | Descripción                                         |
-| :----- | :------------------------------------- | :-------------------------------------------------- |
-| `GET`  | `/almacen`                             | Redirige a la documentación interactiva.            |
-| `GET`  | `/almacen/docs`                        | Muestra la documentación interactiva (Swagger UI).  |
-| `GET`  | `/almacen/redoc`                       | Muestra la documentación de lectura (ReDoc).        |
-| `GET`  | `/almacen/productos`                   | Obtiene la lista de todos los productos.            |
-| `POST` | `/almacen/productos`                   | Crea un nuevo producto.                             |
-| `GET`  | `/almacen/productos/{producto_id}`     | Obtiene un producto específico por su ID.           |
-| `PUT`  | `/almacen/productos/{producto_id}`     | Actualiza un producto existente por su ID.          |
-| `DELETE` | `/almacen/productos/{producto_id}` | Elimina un producto por su ID.                      |
+| Método     | URL                                    | Descripción                                         |
+| :-----     | :------------------------------------- | :-------------------------------------------------- |
+| `GET`      | `/almacen`                             | Redirige a la documentación interactiva.            |
+| `GET`      | `/almacen/docs`                        | Muestra la documentación interactiva (Swagger UI).  |
+| `GET`      | `/almacen/redoc`                       | Muestra la documentación de lectura (ReDoc).        |
+| `GET`      | `/almacen/productos`                   | Obtiene la lista de todos los productos.            |
+| `POST`     | `/almacen/productos`                   | Crea un nuevo producto.                             |
+| `GET`      | `/almacen/productos/{producto_id}`     | Obtiene un producto específico por su ID.           |
+| `PUT`      | `/almacen/productos/{producto_id}`     | Actualiza un producto existente por su ID.          |
+| `DELETE`   | `/almacen/productos/{producto_id}`     | Elimina un producto por su ID.                      |
