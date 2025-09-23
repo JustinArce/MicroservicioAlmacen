@@ -21,12 +21,12 @@ Se propone una arquitectura de microservicios para aislar los dominios de negoci
 ```mermaid
 graph TD
     subgraph "Cliente"
-        Client[<font size=5>📱<br>App Web/Móvil</font>]
+        Client[<fontsize=4>📱<br>App Web/Móvil</font>]
     end
 
     subgraph "Infraestructura Común"
         Gateway(API Gateway)
-        EventBus{<font size=5>Bus de Eventos</font><br><font size=2>RabbitMQ / Kafka</font>}
+        EventBus{<fontsize=4>Bus de Eventos</font><br><fontsize=2>RabbitMQ / Kafka</font>}
     end
 
     Client -- Peticiones HTTP --> Gateway
@@ -35,12 +35,12 @@ graph TD
         direction LR
         subgraph "Lado de Escritura (Commands)"
             CmdHandler(Manejador de Comandos)
-            EventStore[(<font size=5>Almacén de Eventos</font><br><font size=2>Fuente de la Verdad</font>)]
+            EventStore[(<fontsize=4>Almacén de Eventos</font><br><fontsize=2>Fuente de la Verdad</font>)]
         end
         
         subgraph "Lado de Lectura (Queries)"
             Projectors(Proyectores)
-            ReadDB[(<font size=e=5>Vistas Materializadas</font><br><font size=2>Optimizado para Lectura</font>)]
+            ReadDB[(<fontsize=4>Vistas Materializadas</font><br><fontsize=2>Optimizado para Lectura</font>)]
         end
         
         CmdHandler -- Guarda Evento --> EventStore
@@ -51,12 +51,12 @@ graph TD
     
     subgraph "Microservicio de Almacén (CRUD)"
         ProductAPI(API de Productos)
-        ProductDB[(<font size=5>Base de Datos</font><br><font size=2>Catálogo de Productos</font>)]
+        ProductDB[(<fontsize=4>Base de Datos</font><br><fontsize=2>Catálogo de Productos</font>)]
         ProductAPI --- ProductDB
     end
     
     subgraph "Sistema de Analítica (BI)"
-        Analytics[<font size=5>📊<br>Herramientas de Analítica</font>]
+        Analytics[<fontsize=4>📊<br>Herramientas de Analítica</font>]
     end
 
     %% --- Flujos de Datos ---
@@ -67,6 +67,7 @@ graph TD
     EventBus -- 4. Consume Evento 'PedidoConfirmado' --> ProductAPI
     
     ReadDB -- 5. Genera Informes --> Analytics
+
 ```
 
 ---
