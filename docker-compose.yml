@@ -1,0 +1,56 @@
+services:
+  # 1. Servicio Gateway (Nginx)
+  gateway:
+    image: nginx:latest
+    ports:
+      - "1234:80" # Expone el puerto 1234 del host al 80 del gateway
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf # Monta el archivo de configuración de Nginx
+    depends_on:
+      - api # Se asegura que la API inicie antes que el gateway
+    networks:
+      - public_net
+
+  # 2. Servicio API (aplicación FastAPI)
+  api:
+    build: . # Construye la imagen a partir del Dockerfile local
+    expose:
+      - "80" # Expone el puerto 80 solo a la red interna, no al host
+    env_file:
+      - ./api.env # Carga las variables de entorno para la API
+    depends_on:
+      db:
+        condition: service_healthy # Espera a que la base de datos esté saludable
+    networks:
+      - public_net # Conectada a la red pública para ser accesible desde el gateway
+      - private_net # Conectada a la red privada para acceder a la base de datos
+    environment:
+      - ROOT_PATH=/almacen
+
+  # 3. Servicio de Base de Datos (PostgreSQL)
+  db:
+    image: postgres:13
+    # No se exponen puertos al host para mayor seguridad
+    env_file:
+      - ./db.env # Carga las variables de entorno para la BD
+    volumes:
+      - db_data:/var/lib/postgresql/data # Persiste los datos de la BD
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U apiuser -d dbApi"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - private_net # Conectada únicamente a la red privada
+
+# Definición de volúmenes para la persistencia
+volumes:
+  db_data:
+    driver: local
+
+# Definición de las redes para el aislamiento
+networks:
+  public_net:
+    driver: bridge
+  private_net:
+    internal: true # Esta red no tiene acceso al exterior
