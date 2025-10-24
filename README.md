@@ -21,6 +21,7 @@ Se propone una arquitectura de microservicios para aislar los dominios de negoci
 ```mermaid
 graph TD
     subgraph "Cliente"
+<<<<<<< Updated upstream
         Client[<fontsize=4>📱<br>App Web/Móvil</font>]
 =======
         Client[<font size=5>📱<br>App Web/Móvil</font>]
