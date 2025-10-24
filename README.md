@@ -22,11 +22,18 @@ Se propone una arquitectura de microservicios para aislar los dominios de negoci
 graph TD
     subgraph "Cliente"
         Client[<fontsize=4>📱<br>App Web/Móvil</font>]
+=======
+        Client[<font size=5>📱<br>App Web/Móvil</font>]
+>>>>>>> Stashed changes
     end
 
     subgraph "Infraestructura Común"
         Gateway(API Gateway)
+<<<<<<< Updated upstream
         EventBus{<fontsize=4>Bus de Eventos</font><br><fontsize=2>RabbitMQ / Kafka</font>}
+=======
+        EventBus{<font size=5>Bus de Eventos</font><br><font size=2>RabbitMQ / Kafka</font>}
+>>>>>>> Stashed changes
     end
 
     Client -- Peticiones HTTP --> Gateway
@@ -35,12 +42,20 @@ graph TD
         direction LR
         subgraph "Lado de Escritura (Commands)"
             CmdHandler(Manejador de Comandos)
+<<<<<<< Updated upstream
             EventStore[(<fontsize=4>Almacén de Eventos</font><br><fontsize=2>Fuente de la Verdad</font>)]
+=======
+            EventStore[(<font size=5>Almacén de Eventos</font><br><font size=2>Fuente de la Verdad</font>)]
+>>>>>>> Stashed changes
         end
         
         subgraph "Lado de Lectura (Queries)"
             Projectors(Proyectores)
+<<<<<<< Updated upstream
             ReadDB[(<fontsize=4>Vistas Materializadas</font><br><fontsize=2>Optimizado para Lectura</font>)]
+=======
+            ReadDB[(<font size=e=5>Vistas Materializadas</font><br><font size=2>Optimizado para Lectura</font>)]
+>>>>>>> Stashed changes
         end
         
         CmdHandler -- Guarda Evento --> EventStore
@@ -51,12 +66,20 @@ graph TD
     
     subgraph "Microservicio de Almacén (CRUD)"
         ProductAPI(API de Productos)
+<<<<<<< Updated upstream
         ProductDB[(<fontsize=4>Base de Datos</font><br><fontsize=2>Catálogo de Productos</font>)]
+=======
+        ProductDB[(<font size=5>Base de Datos</font><br><font size=2>Catálogo de Productos</font>)]
+>>>>>>> Stashed changes
         ProductAPI --- ProductDB
     end
     
     subgraph "Sistema de Analítica (BI)"
+<<<<<<< Updated upstream
         Analytics[<fontsize=4>📊<br>Herramientas de Analítica</font>]
+=======
+        Analytics[<font size=5>📊<br>Herramientas de Analítica</font>]
+>>>>>>> Stashed changes
     end
 
     %% --- Flujos de Datos ---
@@ -67,7 +90,10 @@ graph TD
     EventBus -- 4. Consume Evento 'PedidoConfirmado' --> ProductAPI
     
     ReadDB -- 5. Genera Informes --> Analytics
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 ```
 
 ---
@@ -103,6 +129,7 @@ Para levantar el entorno localmente, la siguiente estructura de archivos es nece
 
 ### Endpoints de la API
 
+<<<<<<< Updated upstream
 | Método     | URL                                    | Descripción                                         |
 | :-----     | :------------------------------------- | :-------------------------------------------------- |
 | `GET`      | `/almacen`                             | Redirige a la documentación interactiva.            |
@@ -113,3 +140,15 @@ Para levantar el entorno localmente, la siguiente estructura de archivos es nece
 | `GET`      | `/almacen/productos/{producto_id}`     | Obtiene un producto específico por su ID.           |
 | `PUT`      | `/almacen/productos/{producto_id}`     | Actualiza un producto existente por su ID.          |
 | `DELETE`   | `/almacen/productos/{producto_id}`     | Elimina un producto por su ID.                      |
+=======
+| Método | URL                                    | Descripción                                         |
+| :----- | :------------------------------------- | :-------------------------------------------------- |
+| `GET`  | `/almacen`                             | Redirige a la documentación interactiva.            |
+| `GET`  | `/almacen/docs`                        | Muestra la documentación interactiva (Swagger UI).  |
+| `GET`  | `/almacen/redoc`                       | Muestra la documentación de lectura (ReDoc).        |
+| `GET`  | `/almacen/productos`                   | Obtiene la lista de todos los productos.            |
+| `POST` | `/almacen/productos`                   | Crea un nuevo producto.                             |
+| `GET`  | `/almacen/productos/{producto_id}`     | Obtiene un producto específico por su ID.           |
+| `PUT`  | `/almacen/productos/{producto_id}`     | Actualiza un producto existente por su ID.          |
+| `DELETE` | `/almacen/productos/{producto_id}` | Elimina un producto por su ID.                      |
+>>>>>>> Stashed changes
